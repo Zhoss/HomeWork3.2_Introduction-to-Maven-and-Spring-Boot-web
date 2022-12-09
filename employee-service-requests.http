@@ -1,0 +1,10 @@
+### Получить всех сотрудников
+GET http://localhost:8080/employees
+### Получить сумму зарплат по сотрудникам
+GET http://localhost:8080/employees/salary/sum
+### Получить сотрудника с минимальной зарплатой
+GET http://localhost:8080/employees/salary/min
+### Получить сотрудника с максимальной зарплатой
+GET http://localhost:8080/employees/salary/max
+### Получить всех сотрудников, зарплата которых больше средней зарплаты
+GET http://localhost:8080/employees/salary/high-salary
