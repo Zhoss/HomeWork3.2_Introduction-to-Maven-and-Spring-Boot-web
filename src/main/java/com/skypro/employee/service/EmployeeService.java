@@ -2,10 +2,7 @@ package com.skypro.employee.service;
 
 import com.skypro.employee.model.Employee;
 import com.skypro.employee.record.EmployeeRequest;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -22,24 +19,15 @@ public class EmployeeService {
     }
 
     public Employee addEmployee(EmployeeRequest employeeRequest) {
-        boolean checkFirstName = StringUtils.isEmpty(employeeRequest.getFirstName()) ||
-                StringUtils.isBlank(employeeRequest.getFirstName()) ||
-                !StringUtils.isAlpha(employeeRequest.getFirstName());
-
-        boolean checkLastName = StringUtils.isEmpty(employeeRequest.getLastName()) ||
-                StringUtils.isBlank(employeeRequest.getLastName()) ||
-                !StringUtils.isAlpha(employeeRequest.getLastName());
-
-        if (checkFirstName || checkLastName) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        } else {
-            Employee employee = new Employee(StringUtils.capitalize(employeeRequest.getFirstName()),
-                    StringUtils.capitalize(employeeRequest.getLastName()),
-                    employeeRequest.getDepartment(),
-                    employeeRequest.getSalary());
-            this.employees.put(employee.getId(), employee);
-            return employee;
+        if (employeeRequest.getFirstName() == null || employeeRequest.getLastName() == null) {
+            throw new IllegalArgumentException("Employee name should be set");
         }
+        Employee employee = new Employee(employeeRequest.getFirstName(),
+                employeeRequest.getLastName(),
+                employeeRequest.getDepartment(),
+                employeeRequest.getSalary());
+        this.employees.put(employee.getId(), employee);
+        return employee;
     }
 
     public int getSalarySum() {
