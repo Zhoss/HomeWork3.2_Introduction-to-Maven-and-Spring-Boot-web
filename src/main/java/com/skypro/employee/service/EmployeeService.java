@@ -37,7 +37,9 @@ public class EmployeeService {
                     StringUtils.capitalize(employeeRequest.getLastName()),
                     employeeRequest.getDepartment(),
                     employeeRequest.getSalary());
-            this.employees.put(employee.getId(), employee);
+            if (!this.employees.containsValue(employee)) {
+                this.employees.put(employee.getId(), employee);
+            }
             return employee;
         }
     }

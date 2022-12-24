@@ -3,7 +3,7 @@ package com.skypro.employee.record;
 public class EmployeeRequest {
     private String firstName;
     private String lastName;
-    private int department;
+    private Integer department;
     private int salary;
 
     public String getFirstName() {
@@ -14,7 +14,7 @@ public class EmployeeRequest {
         return lastName;
     }
 
-    public int getDepartment() {
+    public Integer getDepartment() {
         return department;
     }
 
@@ -30,7 +30,7 @@ public class EmployeeRequest {
         this.lastName = lastName;
     }
 
-    public void setDepartment(int department) {
+    public void setDepartment(Integer department) {
         this.department = department;
     }
 
